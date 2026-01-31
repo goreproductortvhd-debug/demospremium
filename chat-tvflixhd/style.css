@@ -1,0 +1,39 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 90%; /* Ancho flexible */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    /* Flexbox o Grid para un mejor control responsive si es necesario */
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+#content-display {
+    white-space: pre-wrap; /* Mantiene el formato del TXT y permite el ajuste de línea */
+    word-wrap: break-word;
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+    padding: 15px;
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    max-height: 50vh; /* Altura máxima relativa al viewport para pantallas pequeñas */
+}
+
+/* Media Query para asegurar la responsividad en pantallas muy pequeñas */
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        margin: 10px auto;
+    }
+}
