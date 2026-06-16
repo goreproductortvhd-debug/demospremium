@@ -78,3 +78,51 @@ img, object, embed, video {
 	display: block;
 }
 }
+.boton-flotante-donar {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    background-color: #ff5e36; /* Color de fondo (ej. naranja llamativo) */
+    color: #ffffff; /* Color del texto y el ícono */
+    padding: 12px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.boton-flotante-donar:hover {
+    background-color: #e64218;
+    transform: translateY(-3px); /* Efecto al pasar el cursor */
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.icono-donar {
+    width: 24px;
+    height: 24px;
+}
+
+.texto-donar {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Diseño Responsive para móviles */
+@media (max-width: 768px) {
+    .boton-flotante-donar {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 15px;
+    }
+    .texto-donar {
+        display: none; /* Oculta el texto en pantallas pequeñas para dejar solo el ícono */
+    }
+    .boton-flotante-donar {
+        border-radius: 50%; /* Se vuelve un botón redondo pequeño */
+        padding: 12px;
+    }
+}
