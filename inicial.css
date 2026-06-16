@@ -126,3 +126,33 @@ img, object, embed, video {
         padding: 12px;
     }
 }
+.boton-donar-flotante {
+    position: fixed;
+    bottom: 20px; /* Distancia desde la parte inferior */
+    left: 20px;  /* Distancia desde la izquierda */
+    z-index: 9999; /* Asegura que siempre esté por encima de otros elementos */
+    background-color: #ff4757; /* Color llamativo para donaciones */
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 50px; /* Botón redondeado */
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra flotante */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Efecto al pasar el mouse por encima */
+.boton-donar-flotante:hover {
+    background-color: #e84118;
+    transform: translateY(-3px); /* Levanta el botón ligeramente */
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .boton-donar-flotante {
+        padding: 10px 18px;
+        font-size: 14px;
+        bottom: 15px;
+        left: 15px;
+    }
+}
