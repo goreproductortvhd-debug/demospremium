@@ -1,0 +1,17 @@
+#EXTM3U
+#EXT-X-VERSION: 3
+#EXT-CUSTOM-STARTTIME:1759386600
+#EXT-CUSTOM-LASTTIME: 1761339571
+
+
+#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=5000000, RESOLUTION=1280x720
+https://rtv.fullhd-streaming.com:19360/dreikotv/dreikotv.m3u8?PlaylistM3UCL
+/playlist/stream.m3u8?s=hd&t=&id=2147ea58-82d3-764b-b61e-b1a0db5f17bf&q=1&d=u
+
+#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=2500000, RESOLUTION=854x480
+https://rtv.fullhd-streaming.com:19360/dreikotv/dreikotv.m3u8?PlaylistM3UCL
+/playlist/stream.m3u8?s=d&t=&id=2147ca58-82d3-764b-b61c-b1a0db5f17bf&q=1&d=u
+
+#EXT-X-STREAM-INF:PROGRAM-ID=1, BANDWIDTH=800000, RESOLUTION=640x360
+https://rtv.fullhd-streaming.com:19360/dreikotv/dreikotv.m3u8?PlaylistM3UCL
+/playlist/stream.m3u8?s=1q&t=&id=2147ca58-82d3-764b-b61c-b1a0db5f17bf&q=1&d=u
