@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Compra y Venta de Plataformas</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        .card h3 {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .card .value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .grid-forms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+            background: var(--card-bg);
+            color: var(--text);
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background: #64748b;
+        }
+        .btn-secondary:hover {
+            background: #475569;
+        }
+
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: #f1f5f9;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .badge-compra { background: #d1fae5; color: #065f46; }
+        .badge-venta { background: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Control de Registro: Compras y Ventas</h1>
+        <p>Gestiona tus cuentas y licencias de plataformas de streaming</p>
+    </header>
+
+    <!-- Resumen -->
+    <div class="dashboard">
+        <div class="card">
+            <h3>Total Compras</h3>
+            <div class="value" id="total-compras" style="color: var(--danger);">$0.00</div>
+        </div>
+        <div class="card">
+            <h3>Total Ventas</h3>
+            <div class="value" id="total-ventas" style="color: var(--success);">$0.00</div>
+        </div>
+        <div class="card">
+            <h3>Balance Neto</h3>
+            <div class="value" id="balance-neto">$0.00</div>
+        </div>
+    </div>
+
+    <div class="grid-forms">
+        <!-- Formulario Transacciones -->
+        <div class="card">
+            <h2>Registrar Movimiento</h2>
+            <form id="form-transaccion" style="margin-top: 15px;">
+                <div class="form-group">
+                    <label for="tipo">Tipo de Movimiento</label>
+                    <select id="tipo" required>
+                        <option value="Compra">Compra (Inversión)</option>
+                        <option value="Venta">Venta (Ingreso)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="producto">Plataforma / Producto</label>
+                    <select id="producto" required>
+                        <!-- Se llenará dinámicamente -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="monto">Monto ($)</label>
+                    <input type="number" id="monto" step="0.01" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="detalles">Detalles (E-mail, Perfil, Cliente)</label>
+                    <input type="text" id="detalles" placeholder="Ej. cuenta1@mail.com - Perfil 3">
+                </div>
+                <button type="submit">Guardar Movimiento</button>
+            </form>
+        </div>
+
+        <!-- Formulario Añadir Plataformas -->
+        <div class="card">
+            <h2>Añadir Nueva Plataforma</h2>
+            <form id="form-producto" style="margin-top: 15px;">
+                <div class="form-group">
+                    <label for="nuevo-producto">Nombre de la Plataforma / Servicio</label>
+                    <input type="text" id="nuevo-producto" placeholder="Ej. Paramount+, Prime Video" required>
+                </div>
+                <button type="submit" class="btn-secondary">Agregar al Catálogo</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tabla de Historial -->
+    <div class="card" style="padding: 0; overflow: hidden;">
+        <div style="padding: 20px;">
+            <h2>Historial de Transacciones</h2>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                        <th>Plataforma</th>
+                        <th>Monto</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-transacciones">
+                    <!-- Dinámico -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Estado de la aplicación
+    let productos = ["Netflix", "Disney+", "Crunchyroll", "HBO Max"];
+    let transacciones = [];
+
+    // Inicializar select de productos
+    function actualizarSelect() {
+        const select = document.getElementById('producto');
+        select.innerHTML = '';
+        productos.forEach(prod => {
+            const opt = document.createElement('option');
+            opt.value = prod;
+            opt.textContent = prod;
+            select.appendChild(opt);
+        });
+    }
+
+    // Actualizar Panel Financiero
+    function actualizarDashboard() {
+        let compras = 0;
+        let ventas = 0;
+
+        transacciones.forEach(t => {
+            if (t.tipo === 'Compra') compras += t.monto;
+            if (t.tipo === 'Venta') ventas += t.monto;
+        });
+
+        const neto = ventas - compras;
+
+        document.getElementById('total-compras').textContent = `$${compras.toFixed(2)}`;
+        document.getElementById('total-ventas').textContent = `$${ventas.toFixed(2)}`;
+        
+        const elementoNeto = document.getElementById('balance-neto');
+        elementoNeto.textContent = `$${neto.toFixed(2)}`;
+        elementoNeto.style.color = neto >= 0 ? 'var(--success)' : 'var(--danger)';
+    }
+
+    // Renderizar Historial
+    function renderizarTabla() {
+        const tbody = document.getElementById('lista-transacciones');
+        tbody.innerHTML = '';
+
+        transacciones.forEach(t => {
+            const tr = document.createElement('tr');
+            const badgeClass = t.tipo === 'Compra' ? 'badge-compra' : 'badge-venta';
+            
+            tr.innerHTML = `
+                <td>${t.fecha}</td>
+                <td><span class="badge ${badgeClass}">${t.tipo}</span></td>
+                <td><strong>${t.producto}</strong></td>
+                <td>$${t.monto.toFixed(2)}</td>
+                <td>${t.detalles || '-'}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    // Evento: Agregar Producto
+    document.getElementById('form-producto').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const input = document.getElementById('nuevo-producto');
+        const nuevoNombre = input.value.trim();
+
+        if (nuevoNombre && !productos.includes(nuevoNombre)) {
+            productos.push(nuevoNombre);
+            actualizarSelect();
+            input.value = '';
+            alert(`"${nuevoNombre}" se ha añadido correctamente.`);
+        } else {
+            alert('El producto ya existe o no es válido.');
+        }
+    });
+
+    // Evento: Registrar Transacción
+    document.getElementById('form-transaccion').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const tipo = document.getElementById('tipo').value;
+        const producto = document.getElementById('producto').value;
+        const monto = parseFloat(document.getElementById('monto').value);
+        const detalles = document.getElementById('detalles').value.trim();
+        const fecha = new Date().toLocaleDateString();
+
+        const nuevaTransaccion = { fecha, tipo, producto, monto, detalles };
+        transacciones.unshift(nuevaTransaccion); // Añadir al inicio
+
+        actualizarDashboard();
+        renderizarTabla();
+        
+        // Limpiar campos numéricos y de texto
+        document.getElementById('monto').value = '';
+        document.getElementById('detalles').value = '';
+    });
+
+    // Carga Inicial
+    actualizarSelect();
+</script>
+
+</body>
+</html>
