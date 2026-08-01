@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 40px;
+            background: #f4f6f9;
+            text-align: center;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #ff3b30;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        // Protección de ruta: si no hay sesión, expulsa al usuario
+        if (localStorage.getItem('sesionActiva') !== 'true') {
+            window.location.href = "index.html";
+        }
+    </script>
+</head>
+<body>
+
+    <div class="card">
+        <h1>¡Acceso Concedido!</h1>
+        <p>Has iniciado sesión correctamente en el sistema.</p>
+		<p>
+<a href="https://tvxhd-demos.blogspot.com/p/servidores-platafora.html">
+<img alt="Boton" class="auto-style1" height="53" src="ir%20a%20web.jpg" width="213" /></a></p>
+        <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    </div>
+
+    <script>
+        function cerrarSesion() {
+            localStorage.removeItem('sesionActiva');
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>
