@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Espacio Visual</title>
+    <style>
+        :root {
+            --bg-color: #f9f6f0;
+            --card-color: #ffffff;
+            --primary-color: #ff6b6b;
+            --text-color: #4a4a4a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .upload-section {
+            background: var(--card-color);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], textarea, input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .forum-feed {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .post {
+            background: var(--card-color);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85em;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .post-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .post p {
+            margin: 0 0 15px 0;
+            line-height: 1.5;
+        }
+
+        .post img, .post video {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Nuestro Rincón 🖤</h1>
+        <p>Un espacio privado para nuestras fotos, videos y notas.</p>
+    </header>
+
+    <div class="upload-section">
+        <div class="form-group">
+            <label for="author">¿Quién publica?</label>
+            <input type="text" id="author" placeholder="Tu nombre o apodo">
+        </div>
+        <div class="form-group">
+            <label for="message">Mensaje / Nota</label>
+            <textarea id="message" rows="3" placeholder="Escribe algo bonito..."></textarea>
+        </div>
+        <div class="form-group">
+            <label for="fileInput">Archivo Visual (Imagen o Video)</label>
+            <input type="file" id="fileInput" accept="image/*,video/*">
+        </div>
+        <button onclick="createPost()">Publicar en el foro</button>
+    </div>
+
+    <div class="forum-feed" id="forumFeed">
+        <!-- Las publicaciones aparecerán aquí automáticamente -->
+    </div>
+
+    <script>
+        // Cargar publicaciones al abrir la página
+        document.addEventListener("DOMContentLoaded", loadPosts);
+
+        function createPost() {
+            const author = document.getElementById("author").value.trim();
+            const message = document.getElementById("message").value.trim();
+            const fileInput = document.getElementById("fileInput");
+
+            if (!author || !message) {
+                alert("Por favor, escribe tu nombre y un mensaje.");
+                return;
+            }
+
+            const file = fileInput.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    savePost(author, message, e.target.result, file.type);
+                };
+                reader.readAsDataURL(file);
+            } else {
+                savePost(author, message, null, null);
+            }
+        }
+
+        function savePost(author, text, fileData, fileType) {
+            const posts = JSON.parse(localStorage.getItem("couple_posts")) || [];
+            
+            const newPost = {
+                id: Date.now(),
+                author: author,
+                text: text,
+                file: fileData,
+                fileType: fileType,
+                date: new Date().toLocaleString()
+            };
+
+            posts.unshift(newPost); // Agregar al inicio para que sea lo más reciente
+            localStorage.setItem("couple_posts", JSON.stringify(posts));
+            
+            // Limpiar formulario y recargar feed
+            document.getElementById("message").value = "";
+            document.getElementById("fileInput").value = "";
+            renderPosts(posts);
+        }
+
+        function loadPosts() {
+            const posts = JSON.parse(localStorage.getItem("couple_posts")) || [];
+            renderPosts(posts);
+        }
+
+        function renderPosts(posts) {
+            const feed = document.getElementById("forumFeed");
+            feed.innerHTML = "";
+
+            if (posts.length === 0) {
+                feed.innerHTML = "<p style='text-align:center; color:#888;'>Aún no hay recuerdos compartidos. ¡Sé el primero!</p>";
+                return;
+            }
+
+            posts.forEach(post => {
+                const postElement = document.createElement("div");
+                postElement.className = "post";
+
+                let mediaHTML = "";
+                if (post.file) {
+                    if (post.fileType.startsWith("image/")) {
+                        mediaHTML = `<img src="${post.file}" alt="Imagen compartida">`;
+                    } else if (post.fileType.startsWith("video/")) {
+                        mediaHTML = `<video src="${post.file}" controls></video>`;
+                    }
+                }
+
+                postElement.innerHTML = `
+                    <div class="post-header">
+                        <span class="post-author">✨ ${post.author}</span>
+                        <span>${post.date}</span>
+                    </div>
+                    <p>${post.text}</p>
+                    ${mediaHTML}
+                `;
+                feed.appendChild(postElement);
+            });
+        }
+    </script>
+</body>
+</html>
