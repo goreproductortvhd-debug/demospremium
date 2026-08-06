@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Notas e Imágenes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f4f4f4; }
+        .box { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; }
+        input, textarea { width: 100%; margin-bottom: 10px; padding: 8px; box-sizing: border-box; }
+        button { background: #007BFF; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; }
+        .item { background: #fff; padding: 10px; margin-top: 10px; border-left: 4px solid #007BFF; }
+        img { max-width: 100%; height: auto; margin-top: 5px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Mis Notas e Imágenes</h1>
+    <div class="box">
+        <input type="text" id="titulo" placeholder="Título de la nota">
+        <textarea id="texto" placeholder="Escribe tu nota aquí..."></textarea>
+        <input type="file" id="imagen" accept="image/*">
+        <button onclick="guardar()">Guardar</button>
+    </div>
+    <div id="lista"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", mostrar);
+        function guardar() {
+            let t = document.getElementById("titulo").value;
+            let x = document.getElementById("texto").value;
+            let f = document.getElementById("imagen").files[0];
+            if (!t && !x && !f) return;
+            
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let datos = JSON.parse(localStorage.getItem("notas") || "[]");
+                datos.push({ titulo: t, texto: x, img: e.target.result || "" });
+                localStorage.setItem("notas", JSON.stringify(datos));
+                mostrar();
+            }
+            if (f) { reader.readAsDataURL(f); } else { reader.onload({target:{result:""}}); }
+        }
+        function mostrar() {
+            let datos = JSON.parse(localStorage.getItem("notas") || "[]");
+            let html = "";
+            datos.forEach((d, i) => {
+                html += `<div class="item"><h3>${d.titulo}</h3><p>${d.texto}</p>${d.img ? `<img src="${d.img}">` : ''}<button onclick="borrar(${i})" style="background:#dc3545; margin-top:5px;">Borrar</button></div>`;
+            });
+            document.getElementById("lista").innerHTML = html;
+        }
+        function borrar(i) {
+            let datos = JSON.parse(localStorage.getItem("notas") || "[]");
+            datos.splice(i, 1);
+            localStorage.setItem("notas", JSON.stringify(datos));
+            mostrar();
+        }
+    </script>
+</body>
+</html>
