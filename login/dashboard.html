@@ -45,7 +45,7 @@
 <img alt="Boton" class="auto-style1" height="53" src="ir%20a%20web.jpg" width="213" /></a></p>
 <a href="https://goreproductortvhd-debug.github.io/demospremium/foro-privado/">
 <img alt="Boton" class="auto-style1" height="53" src="images%20(7).jpg" width="213" /></a></p>
-<a href="https://goreproductortvhd-debug.github.io/demospremium/Notas/">
+<a href="https://keep.google.com/u/0/share?tid=true#home">
 <img alt="Boton" class="auto-style1" height="53" src="Notas.jpg" width="213" /></a></p>
         <button onclick="cerrarSesion()">Cerrar Sesión</button>
     </div>
@@ -56,6 +56,22 @@
             window.location.href = "index.html";
         }
     </script>
-
+<script language="JavaScript"> 
+function right(e) { 
+if (navigator.appName == 'Netscape' && (e.which == 3 || e.which == 2)){ 
+alert("Te eh complicado un poco la vida lo que se puede"); 
+return false; 
+} 
+else if (navigator.appName == 'Microsoft Internet Explorer' && 
+(event.button == 2 || event.button == 3)) { 
+alert('No permitido'); 
+return false; 
+} 
+return true; 
+} 
+document.onmousedown=right; 
+if (document.layers) window.captureEvents(Event.MOUSEDOWN); 
+window.onmousedown=right; 
+</script>
 </body>
 </html>
