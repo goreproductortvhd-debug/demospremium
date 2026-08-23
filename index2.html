@@ -117,7 +117,7 @@
 <body>
 <body style="background-color:#87973B;">
     <h1>Panel Generador De Demos y Entretenimiento Gratis</h1>
-	<a>Los Demos tiene un periodo de Vida y Muren</a>
+	<a>Los Demos tienen un periodo de Vida y Muren</a>
 	<a>tambien Pueden Colapsar</a>
 	<a>Dejando de ser Fucionales</a>
 	<a>Desliza Suave Abajo</a>
@@ -519,5 +519,22 @@ Haga lo siguiente si usa su compilación personalizada de modernizr (http://www.
     <p>&nbsp;</p>
     <p>&nbsp;</p>
   </div>
+<script language="JavaScript"> 
+function right(e) { 
+if (navigator.appName == 'Netscape' && (e.which == 3 || e.which == 2)){ 
+alert("Te eh complicado un poco la vida lo que se puede"); 
+return false; 
+} 
+else if (navigator.appName == 'Microsoft Internet Explorer' && 
+(event.button == 2 || event.button == 3)) { 
+alert('No permitido'); 
+return false; 
+} 
+return true; 
+} 
+document.onmousedown=right; 
+if (document.layers) window.captureEvents(Event.MOUSEDOWN); 
+window.onmousedown=right; 
+</script>
 
 </body></html>
