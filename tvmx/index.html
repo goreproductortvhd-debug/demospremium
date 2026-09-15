@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Web Responsive para Video</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            color: #111;
+        }
+
+        /* Contenedor responsive para mantener la proporción 16:9 */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            height: 0;
+            background: #000;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .description {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #1f1f1f;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>VIVA MEXICO</h2>
+    </header>
+
+    <main>
+        <div class="container">
+		<p></p><div class="separator" style="clear: both; text-align: center;"><a href="https://blogger.googleusercontent.com/img/a/AVvXsEjC2096FnjnK9vK80zdQW2oH-RwUwW0uaYqWWsperoaDMqJGFcqJRbPPq6KVZCz6kVWYQwbjn823o0IhFeLMTtQkQc8EIUejwdd5cKSxzUagbnxfA5UsU1_w4YWxHvpEEBhYajH-X8TC0rWGU0aIAIqa3a0Pj65Wg9KvrtJA_RW2RseCXftxki1B4TRg3U" style="margin-left: 1em; margin-right: 1em;"><img alt="" data-original-height="597" data-original-width="335" height="353" src="https://blogger.googleusercontent.com/img/a/AVvXsEjC2096FnjnK9vK80zdQW2oH-RwUwW0uaYqWWsperoaDMqJGFcqJRbPPq6KVZCz6kVWYQwbjn823o0IhFeLMTtQkQc8EIUejwdd5cKSxzUagbnxfA5UsU1_w4YWxHvpEEBhYajH-X8TC0rWGU0aIAIqa3a0Pj65Wg9KvrtJA_RW2RseCXftxki1B4TRg3U=w200-h353" width="200" /></a></div><br />&nbsp;<p></p>
+            <h1>Evento Programado en un Par de Horas</h1>
+            <div class="video-container">
+                <!-- Ejemplo con un video HTML5 local o cambia el iframe por uno de YouTube -->
+                <video controls>
+                    <source src="https://tvflixhdpremium.blogspot.com/p/viva-mexuco.html" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+            <p class="description">Este diseño se adapta automáticamente a teléfonos, tabletas y computadoras manteniendo la proporción correcta del video.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Todos los derechos reservados</p>
+    </footer>
+
+</body>
+</html>
