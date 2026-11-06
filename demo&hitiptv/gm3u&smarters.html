@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador Demos M3U/Smarters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+            margin: 0;
+        }
+        .btn-generar {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-generar:hover {
+            background-color: #0056b3;
+        }
+        .texto-contenedor {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+            max-width: 600px;
+            text-align: justify;
+        }
+        .oculto {
+            display: none !important;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: right;
+        }
+        .modal-content textarea {
+            width: 100%;
+            height: 150px;
+            margin-top: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            resize: none;
+        }
+        .btn-cerrar {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-cerrar:hover {
+            background-color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #121212;
+        }
+
+        .contenedor-imagen {
+            width: 100%;
+            max-width: 800px; /* Controla el tamaño máximo en pantallas grandes */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .imagen-responsiva {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor-imagen">
+        <!-- Reemplaza "tu_imagen.png" por la ruta o enlace real de tu imagen -->
+        <img src="https://goreproductortvhd-debug.github.io/demospremium/demo&hitiptv/photo_2026-05-28_23-54-54.jpg" alt="Demos Hit IPTV/Smarters" class="imagen-responsiva">
+    </div>
+
+    <button class="btn-generar" id="btnGenerar">Generar</button>
+
+    <div class="texto-contenedor" id="textoOriginal">
+       Demos Hit IPTV/Smarters
+    </div>
+
+    <div class="modal" id="ventanaModal">
+        <div class="modal-content">
+            <button class="btn-cerrar" id="btnCerrar">Cerrar</button>
+            <textarea id="textoModal" readonly>Son Demos No Para Usos Comercial
+Los Enlaces Son Supervisados
+Con Geolocalización
+Y Se Desactivan si hay Abusos
+
+Hit IPTV
+
+
+http://amazing-prada.xyz:80/get.php?username=Costa&password=Costa123&type=m3u_plus
+
+http://amazing-prada.xyz:80/get.php?username=Danl1101&password=8508901&type=m3u_plus
+
+http://amazing-prada.xyz:80/get.php?username=Dbrawner&password=Dbrawner&type=m3u_plus
+
+http://amazing-prada.xyz:80/get.php?username=DrK-aErgSH&password=zuPVMEPQEv&type=m3u_plus
+
+http://amazing-prada.xyz:80/get.php?username=Edw-inR-ive&password=wjTTbSEenv&type=m3u_plus
+
+http://amazing-prada.xyz:80/get.php?username=Hector-0924&password=KfE7FFscj4&type=m3u_plus
+
+http://amazing-prada.xyz:80/get.php?username=Jerry123&password=J2635269&type=m3u_plus
+
+http://amazing-prada.xyz:80/get.php?username=Kelly1234&password=Kelly1234&type=m3u_plus
+
+http://amazing-prada.xyz:80/get.php?username=Kimberly&password=Jackson&type=m3u_plus
+
+http://amazing-prada.xyz:80/get.php?username=Mario750&password=hX8feqY3&type=m3u_plus 
+
+
+
+Hit IPTV
+
+
+http://njftxw.top:8080/get.php?username=01673503200974067&password=277913f8f527&type=m3u_plus
+
+http://njftxw.top:8080/get.php?username=01745476523726&password=03b10c4e6bb0&type=m3u_plus
+
+http://njftxw.top:8080/get.php?username=1221738274066667&password=301d5e24cdb1&type=m3u_plus
+
+http://njftxw.top:8080/get.php?username=1231746467882743&password=3cb6de1bc19a&type=m3u_plus
+
+http://njftxw.top:8080/get.php?username=1234567890&password=1234567890&type=m3u_plus
+
+http://njftxw.top:8080/get.php?username=14171572141462&password=51741346610266&type=m3u_plus
+
+http://njftxw.top:8080/get.php?username=1421740665397687&password=368d6fcee33b&type=m3u_plus
+
+http://njftxw.top:8080/get.php?username=1611737131306655&password=6t99jp3affkj&type=m3u_plus
+
+http://njftxw.top:8080/get.php?username=1731755580841875&password=1ab7e7a23ab4&type=m3u_plus
+
+http://njftxw.top:8080/get.php?username=1731762609498950&password=c1c2eae7a985&type=m3u_plus
+
+ </textarea>
+        </div>
+    </div>
+
+    <script>
+        const btnGenerar = document.getElementById('btnGenerar');
+        const btnCerrar = document.getElementById('btnCerrar');
+        const textoOriginal = document.getElementById('textoOriginal');
+        const ventanaModal = document.getElementById('ventanaModal');
+
+        btnGenerar.addEventListener('click', () => {
+            textoOriginal.classList.add('oculto');
+            ventanaModal.style.display = 'flex';
+        });
+
+        btnCerrar.addEventListener('click', () => {
+            ventanaModal.style.display = 'none';
+            textoOriginal.classList.remove('oculto');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === ventanaModal) {
+                ventanaModal.style.display = 'none';
+                textoOriginal.classList.remove('oculto');
+            }
+        });
+    </script>
+</body>
+</html>
