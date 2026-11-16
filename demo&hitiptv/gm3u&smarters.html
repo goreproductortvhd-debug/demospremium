@@ -123,7 +123,25 @@
     <div class="texto-contenedor" id="textoOriginal">
        Demos Hit IPTV/Smarters
     </div>
-
+    <p>&nbsp;</p>
+  </div>
+<script language="JavaScript"> 
+function right(e) { 
+if (navigator.appName == 'Netscape' && (e.which == 3 || e.which == 2)){ 
+alert("Te eh complicado un poco la vida lo que se puede"); 
+return false; 
+} 
+else if (navigator.appName == 'Microsoft Internet Explorer' && 
+(event.button == 2 || event.button == 3)) { 
+alert('No permitido'); 
+return false; 
+} 
+return true; 
+} 
+document.onmousedown=right; 
+if (document.layers) window.captureEvents(Event.MOUSEDOWN); 
+window.onmousedown=right; 
+</script>
     <div class="modal" id="ventanaModal">
         <div class="modal-content">
             <button class="btn-cerrar" id="btnCerrar">Cerrar</button>
